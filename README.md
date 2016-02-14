@@ -15,6 +15,11 @@ irb -r ./sidekiq.rb
 APP_ENV=development irb -r ./sidekiq.rb
 ```
 
+*To start using Guard for TDD*
+```bash
+guard
+```
+
 ## Docker
 
 *Build image from Dockerfile*
