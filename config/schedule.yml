@@ -1,0 +1,5 @@
+example_job:
+  cron: "* * * * *"
+  class: "ExampleWorker"
+  queue: default
+  args: ["work harder", 2]
