@@ -1,5 +1,0 @@
-example_id                                 | status | run_time        |
------------------------------------------- | ------ | --------------- |
-./spec/models/example_model_spec.rb[1:1:1] | passed | 0.00404 seconds |
-./spec/models/example_model_spec.rb[1:1:2] | passed | 0.00303 seconds |
-./spec/workers/example_worker_spec.rb[1:1] | passed | 0.00033 seconds |
