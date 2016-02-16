@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'bundler'
+Bundler.require(:default)
 require 'sidekiq'
 require 'sidekiq-cron'
 ENV['APP_ENV'] ||= 'development'
