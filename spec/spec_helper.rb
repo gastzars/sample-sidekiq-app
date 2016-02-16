@@ -19,6 +19,9 @@
 
 ENV['APP_ENV'] ||= 'test'
 ENV['MONGOID_ENV'] ||= ENV['APP_ENV'] 
+require 'rubygems'
+require 'bundler'
+Bundler.require(:default, ENV['APP_ENV'].to_sym)
 require 'pry'
 require 'database_cleaner'
 require 'mongoid'
