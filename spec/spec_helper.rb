@@ -23,15 +23,15 @@ require 'rubygems'
 require 'bundler'
 Bundler.require(:default, ENV['APP_ENV'].to_sym)
 require 'pry'
-require 'database_cleaner'
-require 'mongoid'
+require 'active_record'
+require 'pg'
 require 'redis'
 require 'rspec-sidekiq'
 Dir[File.expand_path('./../lib/**/*.rb', File.dirname(__FILE__))].sort.each {|file| require file }
 Dir[File.expand_path('./../models/**/*.rb', File.dirname(__FILE__))].each {|file| require file }
 Dir[File.expand_path('./../config/initializers/**/*.rb', File.dirname(__FILE__))].each {|file| require file }
 Dir[File.expand_path('./factories/**/*.rb', File.dirname(__FILE__))].sort.each {|file| require file }
-Mongoid.load!(File.expand_path('./../config/mongoid.yml', File.dirname(__FILE__)))
+ActiveRecord::Base.establish_connection(YAML.load_file(File.expand_path('./../config/database.yml', File.dirname(__FILE__)))[ENV['APP_ENV']])
 Dir[File.expand_path('./../workers/**/*.rb', File.dirname(__FILE__))].each {|file| require file }
 
 require 'factory_girl'
@@ -110,17 +110,8 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
-  # Factory girl and database_cleaner
+  # Factory girl
   config.include FactoryGirl::Syntax::Methods
-  config.before(:suite) do
-    DatabaseCleaner[:mongoid].strategy = :truncation
-    begin
-      DatabaseCleaner[:mongoid].start
-    ensure
-      DatabaseCleaner[:mongoid].clean
-    end
-  end
-
 end
 
 RSpec::Sidekiq.configure do |config|

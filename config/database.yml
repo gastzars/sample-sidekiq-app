@@ -1,0 +1,21 @@
+default: &default
+  adapter: "postgresql"
+  host: "localhost"
+  port: 5432
+  username: "postgres"
+  password: "postgres"
+  database: "sample"
+  schema_search_path: "public"
+  encoding: "utf8"
+  template: "template0"
+  reconnect: true
+  pool: 10
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

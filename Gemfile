@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'mongoid'
+gem 'pg'
+gem 'activerecord'
 gem 'redis'
 gem 'sidekiq'
 gem 'sidekiq-cron'
